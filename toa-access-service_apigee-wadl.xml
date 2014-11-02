@@ -1,0 +1,539 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:apigee="http://api.apigee.com/wadl/2010/07/"
+             xmlns="http://wadl.dev.java.net/2009/02"
+             xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
+
+    <resources base="http://xml.development.hotetec.com">
+
+
+   <!-- GESTIÓN DE LA SESIÓN -->
+
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="SesionAbrir" name="POST" apigee:displayName="SesionAbrir">
+                <apigee:tags>
+                    <apigee:tag primary="true">Gestión de la Sesión</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#SesionAbrir">
+Genera una nueva sesión en el sistema y devuelve el identificador de ésta.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#SesionAbrir">
+La función SesionAbrir Genera una nueva sesión en el sistema y devuelve el identificador de ésta. Este identificador se deberá utilizar en todas las peticiones que se realicen de una misma sesión. Son necesarias las credenciales de la agencia para poder crearla. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<SesionAbrirPeticion>
+  <codsys>XML</codsys>
+  <codage>COD</codage>
+  <idtusu>DESARROLLADORES</idtusu>
+  <pasusu>DESARROLLADORESI</pasusu>
+</SesionAbrirPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="SesionIgnorar" name="POST" apigee:displayName="SesionIgnorar">
+                <apigee:tags>
+                    <apigee:tag primary="true">Gestión de la Sesión</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#SesionIgnorar">
+Borra los datos almacenados en el estado de la sesión
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#SesionIgnorar">
+La función SesionIgnorar borra los datos almacenados en el estado de la sesión. Esta funcion eliminará cualquier información de estado del proceso de reserva como: disponibilidad, servicios bloqueados, etc. Esto no implica que las reservas ya confirmadas bajo esta sesión sean canceladas. Una vez obtenido el localizador el proceso de reseva está finalizado, por lo que no puede ser ignorado. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<SesionIgnorarPeticion>
+    <ideses>AGH#12345#123456789012345</ideses>
+    <codtou>HTT</codtou>
+</SesionIgnorarPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="SesionCerrar" name="POST" apigee:displayName="SesionCerrar">
+                <apigee:tags>
+                    <apigee:tag primary="true">Gestión de la Sesión</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#SesionCerrar">
+Da por finalizada la sesión.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#SesionCerrar">
+La función SesionCerrar da por finalizada la sesión, liberando los servicios bloqueados y quedando el identificador de ésta invalidado. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<SesionCerrarPeticion>
+    <ideses>AGH#12345#123456789012345</ideses>
+</SesionCerrarPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="SesionEstado" name="POST" apigee:displayName="SesionEstado">
+                <apigee:tags>
+                    <apigee:tag primary="true">Gestión de la Sesión</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#SesionEstado">
+ Consulta la configuración asociada a un identificador de sesión.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#SesionEstado">
+La función SesionEstado puede consultar la configuración asociada a un identificador de sesión. A parte de consulta, también se puede utilizar para modificar ciertos parámetros de dicha configuración, como son el código de idioma y de divisa. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<SesionEstadoPeticion>
+ <ideses>XML#17#442106373838493</ideses>
+ <!--><codidi>EN</codidi>
+ <coddiv>GBP</coddiv>--> 
+</SesionEstadoPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+
+        <!-- CICLO DE RESERVA -->
+
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="DisponibilidadHotel" name="POST" apigee:displayName="DisponibilidadHotel">
+                <apigee:tags>
+                    <apigee:tag primary="true">Ciclo de Reserva</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#DisponibilidadHotel">
+ Lista disponibilidad de  hoteles que cumplan los criterios definidos en la petición.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#DisponibilidadHotel">
+La función DisponibilidadHotel devuelve la lista de hoteles que cumplan los criterios definidos en la petición. Los criterios de búsqueda de disponibilidad permiten definir el periodo y las distribuciones de pasajeros además de preferencias sobre la localización del hotel o características de los servicios. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<DisponibilidadHotelPeticion>
+    <ideses>AGH#12345#123456789012345</ideses>
+    <codtou>HTT</codtou>
+    <fecini>22/06/2014</fecini>
+    <fecfin>23/06/2014</fecfin>
+    <codzge>HAV</codzge>
+    <distri id="1">
+        <numuni>1</numuni>
+        <numadl>2</numadl>
+        <numnin>2</numnin>
+        <numbeb>0</numbeb>
+        <edanin>4</edanin>
+        <edanin>6</edanin>
+    </distri>
+    <chkscm>S</chkscm>
+    <traduc>codsmo#</traduc>
+    <traduc>codral</traduc> 
+</DisponibilidadHotelPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="BloqueoServicio" name="POST" apigee:displayName="BloqueoServicio">
+                <apigee:tags>
+                    <apigee:tag primary="true">Ciclo de Reserva</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#BloqueoServicio">
+Reserva habitaciones de los servicios devueltos en la última disponibilidad consultada.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#BloqueoServicio">
+La función BloqueoServicio permite gestionar los bloqueos realizados en una misma sesión. La principal función del servicio es la de añadir a la reserva habitaciones de los servicios devueltos en la última disponibilidad, aunque también se podrá consultar o eliminar los bloqueos realizados en la misma sesión. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<BloqueoServicioPeticion>
+    <ideses>AGH#12345#123456789012345</ideses>
+    <codtou>HTT</codtou>
+    <pasage>
+        <adl id="1">
+            <fecnac>12/05/1975</fecnac>
+        </adl>
+        <nin id="2">
+            <fecnac>19/07/2003</fecnac>
+        </nin>
+        <nin id="3">
+            <fecnac>19/07/2004</fecnac>
+        </nin>
+    </pasage>
+    <bloser id="104">
+        <dissmo id="110">
+            <numuni>1</numuni>
+            <pasid>1</pasid>
+            <pasid>2</pasid>
+            <pasid>3</pasid>
+        </dissmo>
+    </bloser>
+    <accion>A</accion>
+</BloqueoServicioPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="ReservaCerrar" name="POST" apigee:displayName="ReservaCerrar">
+                <apigee:tags>
+                    <apigee:tag primary="true">Ciclo de Reserva</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#ReservaCerrar">
+Confirma la reserva de servicios bloqueados en la sesión.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#ReservaCerrar">
+La función ReservaCerrar realiza la confirmación de la reserva de los servicios que se encuentran bloqueados en la sesión. En la petición de este servicio se terminan de introducir los datos necesarios para poder cerrar una reserva, básicamente información referente a la persona de contacto y los pasajeros. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<DisponibilidadHotelPeticion>
+    <ideses>AGH#12345#123456789012345</ideses>
+    <codtou>HTT</codtou>
+    <fecini>22/06/2014</fecini>
+    <fecfin>23/06/2014</fecfin>
+    <codzge>HAV</codzge>
+    <distri id="1">
+        <numuni>1</numuni>
+        <numadl>2</numadl>
+        <numnin>2</numnin>
+        <numbeb>0</numbeb>
+        <edanin>4</edanin>
+        <edanin>6</edanin>
+    </distri>
+    <chkscm>S</chkscm>
+    <traduc>codsmo#</traduc>
+    <traduc>codral</traduc> 
+</DisponibilidadHotelPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- GESTIÓN DE RESERVAS -->
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="ReservaAbrir" name="POST" apigee:displayName="ReservaAbrir">
+                <apigee:tags>
+                    <apigee:tag primary="true">Gestión de Reserva</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#ReservaAbrir">
+Consulta toda la información almacenada de una reserva.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#ReservaAbrir">
+La función ReservaAbrir permite consultar toda la información almacenada de una reserva. Para realizar esta operación se necesita unicamente el localizador de la reserva devuelto en el cierre de la misma. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<ReservaAbrirPeticion>
+    <ideses>AGH#12345#123456789012345</ideses>
+    <codtou>HTT</codtou>
+    <locata>12347</locata>
+</ReservaAbrirPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="ReservaListar" name="POST" apigee:displayName="ReservaListar">
+                <apigee:tags>
+                    <apigee:tag primary="true">Gestión de Reserva</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#ReservaListar">
+Devuelve la lista de reservas que cumplen los criterios de búsqueda especificados.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#ReservaListar">
+La función ReservaListar devuelve la lista de reservas que cumplen los criterios de búsqueda especificados en la petición. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<ReservaListarPeticion>
+    <ideses>AGH#12345#123456789012345</ideses>
+    <codtou>HTT</codtou>
+    <fecini>11/06/2014</fecini>
+    <fecfin>12/07/2014</fecfin>
+    <chkcre>S</chkcre>
+</ReservaListarPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="ReservaCancelar" name="POST" apigee:displayName="ReservaCancelar">
+                <apigee:tags>
+                    <apigee:tag primary="true">Gestión de Reserva</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#ReservaCancelar">
+Cancela la reserva con el localizador proporcionado en la petición. 
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#ReservaCancelar">
+La función ReservaCancelar cancela la reserva con el localizador proporcionado en la petición. En caso de que hubiera gastos de cancelación estos se informaran en la respuesta. Esta petición también se puede utilizar para tarificar los gastos de cancelación de una reserva sin cancelarla informando el campo acccan a ‘T’. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<ReservaCancelarPeticion>
+    <ideses>AGH#12345#123456789012345</ideses>
+    <codtou>PRO</codtou>
+    <locata>123456</locata>
+    <acccan>C</acccan>
+</ReservaCancelarPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <!-- DATOS ESTÁTICOS -->
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="DisponibilidadDestino" name="POST" apigee:displayName="DisponibilidadDestino">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datos Estáticos</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#DisponibilidadDestino">
+Obtiene el árbol de zonas disponibles del proveedor.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#DisponibilidadDestino">
+La función DisponibilidadDestino permite obtener el árbol de zonas disponibles del proveedor. Además, la petición permite indicar ciertos parámetros de solicitud que concretarán la respuesta obtenida. Si tan sólo se informan los campos obligatorios (ideses, codtou y tiparb), se obtendrán todos los destinos disponibles en el sistema de venta indicado. El resto de campos son opcionales, pudiéndose combinar. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<DisponibilidadDestinoPeticion>
+    <ideses>AGH#12345#123456789012345</ideses> 
+    <codtou>HTT</codtou> 
+    <tiparb>ZHT</tiparb> 
+    <tipzge>CIU</tipzge> 
+</DisponibilidadDestinoPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="DisponibilidadElemento" name="POST" apigee:displayName="DisponibilidadElemento">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datos Estáticos</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#DisponibilidadDestino">
+Permite obtener todos los códigos de un determinado proveedor para el elemento indicado.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#DisponibilidadDestino">
+La función DisponibilidadElemento permite obtener todos los códigos de un determinado proveedor para el elemento indicado. Dichos elementos se refieren a, por ejemplo: modalidades, regímenes, categorías, características, etc. Cabe mencionar que cada proveedor puede no tener códigos para ciertos elementos así como puede no tener descripciones en otros idiomas. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<DisponibilidadElementoPeticion>
+    <ideses>AGH#12345#123456789012345</ideses> 
+    <codtou>HTT</codtou> 
+    <codidi>SPA</codidi> 
+    <codele>codsmo</codele> 
+</DisponibilidadElementoPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+        <resource path="/publisher/xmlservice.srv">
+            <method id="ÍnformaciónServicio" name="POST" apigee:displayName="ÍnformaciónServicio">
+                <apigee:tags>
+                    <apigee:tag primary="true">Datos Estáticos</apigee:tag>
+                </apigee:tags>
+
+                <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#InformacionServicio">
+Permite obtener todos los servicios que hay en una zona o la información detallada de un servicio concreto.
+                </doc>
+
+                <request>
+                    <representation>
+                        <apigee:payload required="true">
+                            <!-- Docs are optional, but recommended. -->
+                            <doc apigee:url="http://community.travelopenapps.org/wiki/index.php/Access_service#InformacionServicio">
+La función InformacionServicio permite obtener todos los servicios que hay en una zona o la información detallada de un servicio concreto. Además, permite aplicar ciertos filtros sobre la respuesta a recibir. Véase documentación para más información sobre parámetros y respuesta.
+                            </doc>
+                            <!-- Body content. -->
+                            <apigee:content>
+                                <![CDATA[
+<DisponibilidadElementoPeticion>
+    <ideses>AGH#12345#123456789012345</ideses> 
+    <codtou>HTT</codtou> 
+    <codidi>SPA</codidi> 
+    <codele>codsmo</codele> 
+</DisponibilidadElementoPeticion>
+                                ]]>
+                            </apigee:content>
+                        </apigee:payload>
+                    </representation>
+                </request>
+                <response>
+                    <representation mediaType="text/xml"/>
+                </response>
+            </method>
+        </resource>
+
+    </resources>
+</application>
