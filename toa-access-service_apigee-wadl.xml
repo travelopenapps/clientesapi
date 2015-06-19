@@ -4,13 +4,13 @@
              xmlns="http://wadl.dev.java.net/2009/02"
              xsi:schemaLocation="http://wadl.dev.java.net/2009/02 http://apigee.com/schemas/wadl-schema.xsd http://api.apigee.com/wadl/2010/07/ http://apigee.com/schemas/apigee-wadl-extensions.xsd">
 
-    <resources base="http://xml.development.hotetec.com">
+    <resources base="http://travelopenapps-prod.apigee.net">
 
 
    <!-- GESTIÓN DE LA SESIÓN -->
 
 
-        <resource path="/publisher/xmlservice.srv">
+        <resource path="/publisher/xmlservice.srv?apikey=HKXT04gVMz3xPl4URuFfAk6lD9v6Lt41">
             <method id="SesionAbrir" name="POST" apigee:displayName="SesionAbrir">
                 <apigee:tags>
                     <apigee:tag primary="true">Gestión de la Sesión</apigee:tag>
@@ -32,9 +32,9 @@ La función SesionAbrir Genera una nueva sesión en el sistema y devuelve el ide
                                 <![CDATA[
 <SesionAbrirPeticion>
   <codsys>XML</codsys>
-  <codage>COD</codage>
-  <idtusu>DESARROLLADORES</idtusu>
-  <pasusu>DESARROLLADORESI</pasusu>
+  <codage>WEBAVT</codage>
+  <idtusu>WEBAVT</idtusu>
+  <pasusu>WEBAVTI</pasusu>
 </SesionAbrirPeticion>
                                 ]]>
                             </apigee:content>
